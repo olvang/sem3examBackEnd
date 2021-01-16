@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/fdinsen/CA3.svg?branch=main)](https://travis-ci.com/fdinsen/CA3)
+[![Build Status](https://travis-ci.com/olvang/sem3examBackEnd.svg?branch=main)](https://travis-ci.com/olvang/sem3examBackEnd)
 
 <p>All of this expects you have a local user for your MySql databse called dev with ax2 as password</p>
 
