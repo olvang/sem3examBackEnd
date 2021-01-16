@@ -1,17 +1,17 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="CA3:war exploded">
-    <output-path>$PROJECT_DIR$/target/CA3</output-path>
+  <artifact type="exploded-war" name="sem3exam:war exploded">
+    <output-path>$PROJECT_DIR$/target/sem3exam</output-path>
     <properties id="maven-jee-properties">
       <options>
         <exploded>true</exploded>
-        <module>CA3</module>
+        <module>sem3exam</module>
         <packaging>war</packaging>
       </options>
     </properties>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="CA3" />
+          <element id="module-output" name="sem3exam" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.eclipse.persistence:org.eclipse.persistence.jpa:2.7.7" />
@@ -57,9 +57,9 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/target/CA3/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/target/sem3exam/META-INF/MANIFEST.MF" />
       </element>
-      <element id="javaee-facet-resources" facet="CA3/web/Web" />
+      <element id="javaee-facet-resources" facet="sem3exam/web/Web" />
     </root>
   </artifact>
 </component>
