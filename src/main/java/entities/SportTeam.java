@@ -42,14 +42,14 @@ public class SportTeam implements Serializable {
     @NotNull
     private int maxAge;
 
-    @ManyToMany(mappedBy = "sportTeamList")
+    @ManyToMany(mappedBy = "sportTeamList", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Coach> coachList;
 
     @NotNull
     @ManyToOne()
     private Sport sport;
 
-    @OneToMany(mappedBy = "sportTeam")
+    @OneToMany(mappedBy = "sportTeam", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<MemberInfo> memberInfoList;
 
     public SportTeam(int pricePerYear, String teamName, int minAge, int maxAge, Sport sport) {

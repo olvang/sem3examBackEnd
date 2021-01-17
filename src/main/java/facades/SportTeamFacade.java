@@ -134,6 +134,7 @@ public class SportTeamFacade {
         if (sportTeam == null) {
                 throw new NotFoundException("Could not delete, provided team sport id does not exist, id: " + id);
         }
+
         try {
             em.getTransaction().begin();
             em.remove(sportTeam);

@@ -112,7 +112,7 @@ public class SportFacadeTest {
     }
 
     @Test
-    public void deleteSportTest() throws NotFoundException {
+    public void deleteSportTest() throws NotFoundException, MissingInputException {
         facade.deleteSport(s1.getId());
         SportListDTO sportListDTO = facade.getSports();
         Assertions.assertEquals(3, sportListDTO.getAll().size());

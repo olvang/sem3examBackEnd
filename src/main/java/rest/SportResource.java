@@ -54,7 +54,7 @@ public class SportResource {
     @DELETE
     @Produces({MediaType.APPLICATION_JSON})
     @RolesAllowed("admin")
-    public String deleteSport(@PathParam("id") Long id) throws NotFoundException {
+    public String deleteSport(@PathParam("id") Long id) throws NotFoundException, MissingInputException {
         SportDTO sportDTO = FACADE.deleteSport(id);
         return GSON.toJson(sportDTO);
     }

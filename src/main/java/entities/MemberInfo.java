@@ -34,7 +34,7 @@ public class MemberInfo implements Serializable {
     @NotNull
     private Date datePayed;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private SportTeam sportTeam;
 
     @ManyToOne

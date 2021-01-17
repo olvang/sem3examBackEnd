@@ -40,7 +40,7 @@ public class Coach implements Serializable {
     @NotNull
     private String phone;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<SportTeam> sportTeamList;
 
     public Coach(String name, String email,String phone) {

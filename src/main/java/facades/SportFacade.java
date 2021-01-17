@@ -6,10 +6,12 @@ import entities.Sport;
 import errorhandling.AlreadyExistException;
 import errorhandling.MissingInputException;
 import errorhandling.NotFoundException;
+import org.eclipse.persistence.exceptions.DatabaseException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 public class SportFacade {
@@ -115,12 +117,24 @@ public class SportFacade {
 
 
 
-    public SportDTO deleteSport(Long id) throws NotFoundException {
+    public SportDTO deleteSport(Long id) throws NotFoundException, MissingInputException {
         EntityManager em = getEntityManager();
         Sport sport = em.find(Sport.class, id);
         if (sport == null) {
                 throw new NotFoundException("Could not delete, provided sport id does not exist, id: " + id);
         }
+
+        //Check if sport is used in a team
+        Query query = em.createQuery("Select count(s) FROM SportTeam s WHERE s.sport.id = :id");
+        query.setParameter("id", id);
+
+        Long sportTeamExist = (Long) query.getSingleResult();
+
+        if (sportTeamExist > 0) {
+            throw new MissingInputException("Sport is used in a team and cannot be deleted");
+        }
+
+
         try {
             em.getTransaction().begin();
             em.remove(sport);

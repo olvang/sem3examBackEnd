@@ -49,9 +49,9 @@ public class CoachResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces({MediaType.APPLICATION_JSON})
     @RolesAllowed("admin")
-    public String updateSport(String coachJson) throws MissingInputException, NotFoundException, AlreadyExistException {
+    public String updateCoach(String coachJson) throws MissingInputException, NotFoundException, AlreadyExistException {
         CoachDTO coachDTO = GSON.fromJson(coachJson, CoachDTO.class);
-        coachDTO = FACADE.addCoach(coachDTO);
+        coachDTO = FACADE.updateCoach(coachDTO);
         return GSON.toJson(coachDTO);
     }
 
