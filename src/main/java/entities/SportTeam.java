@@ -46,7 +46,7 @@ public class SportTeam implements Serializable {
     private List<Coach> coachList;
 
     @NotNull
-    @ManyToOne()
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Sport sport;
 
     @OneToMany(mappedBy = "sportTeam", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})

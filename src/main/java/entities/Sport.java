@@ -34,7 +34,7 @@ public class Sport implements Serializable {
     @NotNull
     private String description;
 
-    @OneToMany(mappedBy = "sport")
+    @OneToMany(mappedBy = "sport", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<SportTeam> sportTeamList;
 
     public Sport(String name, String description) {
