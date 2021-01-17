@@ -8,6 +8,7 @@ package dto;
 import dto.Lists.MemberInfoListDTO;
 import entities.MemberInfo;
 import entities.Player;
+import entities.User;
 
 import java.util.List;
 
@@ -25,7 +26,9 @@ public class PlayerDTO extends GenericDTO{
         this.email = email;
         this.phone = phone;
         this.age = age;
-        this.memberInfoList = new MemberInfoListDTO(memberInfoList);
+        if(memberInfoList != null && memberInfoList.size() > 0) {
+            this.memberInfoList = new MemberInfoListDTO(memberInfoList);
+        }
     }
 
     //Without entities
@@ -35,8 +38,27 @@ public class PlayerDTO extends GenericDTO{
         this.email = player.getEmail();
         this.phone = player.getPhone();
         this.age = player.getAge();
+        if(player.getMemberInfoList() != null && player.getMemberInfoList().size() > 0) {
+            this.memberInfoList = new MemberInfoListDTO(player.getMemberInfoList());
+        }
     }
 
+    //Without lists
+    public PlayerDTO(Player player, Boolean list) {
+        this.id = player.getId();
+        this.name = player.getName();
+        this.email = player.getEmail();
+        this.phone = player.getPhone();
+        this.age = player.getAge();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -77,4 +99,5 @@ public class PlayerDTO extends GenericDTO{
     public void setMemberInfoList(MemberInfoListDTO memberInfoList) {
         this.memberInfoList = memberInfoList;
     }
+
 }

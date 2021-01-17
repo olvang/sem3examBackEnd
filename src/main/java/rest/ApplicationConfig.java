@@ -16,29 +16,30 @@ public class ApplicationConfig extends Application {
         return resources;
     }
 
-    /**
-     * Do not modify addRestResourceClasses() method.
-     * It is automatically populated with
-     * all resources defined in the project.
-     * If required, comment out calling this method in getClasses().
-     */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(cors.CorsFilter.class);
-        resources.add(errorhandling.GenericExceptionMapper.class);
-        resources.add(errorhandling.MissingInputExceptionMapper.class);
-        resources.add(errorhandling.AlreadyExistExceptionMapper.class);
-        resources.add(errorhandling.NotFoundExceptionMapper.class);
-        resources.add(LoginInvalidExceptionMapper.class);
-        resources.add(UsernameTakenExceptionMapper.class);
         resources.add(org.glassfish.jersey.server.wadl.internal.WadlResource.class);
-        resources.add(rest.DemoResource.class);
-        resources.add(rest.UserResource.class);
-        resources.add(rest.SportResource.class);
         resources.add(security.JWTAuthenticationFilter.class);
         resources.add(security.LoginEndpoint.class);
         resources.add(security.RolesAllowedFilter.class);
         resources.add(security.errorhandling.AuthenticationExceptionMapper.class);
         resources.add(security.errorhandling.NotAuthorizedExceptionMapper.class);
+
+        //resources
+        resources.add(rest.DemoResource.class);
+        resources.add(rest.UserResource.class);
+        resources.add(rest.SportResource.class);
+        resources.add(rest.SportTeamResource.class);
+        resources.add(rest.CoachResource.class);
+        resources.add(rest.PlayerResource.class);
+
+        //Exceptions
+        resources.add(LoginInvalidExceptionMapper.class);
+        resources.add(UsernameTakenExceptionMapper.class);
+        resources.add(errorhandling.GenericExceptionMapper.class);
+        resources.add(errorhandling.MissingInputExceptionMapper.class);
+        resources.add(errorhandling.AlreadyExistExceptionMapper.class);
+        resources.add(errorhandling.NotFoundExceptionMapper.class);
     }
     
 }

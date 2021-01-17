@@ -30,7 +30,15 @@ public class CoachDTO extends GenericDTO{
         this.id = coach.getId();
         this.name = coach.getName();
         this.email = coach.getEmail();
-        this.phone = coach.getEmail();
+        this.phone = coach.getPhone();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

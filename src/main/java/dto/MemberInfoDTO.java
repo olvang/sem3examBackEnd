@@ -8,6 +8,8 @@ package dto;
 import entities.MemberInfo;
 import entities.Player;
 import entities.SportTeam;
+
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -30,6 +32,8 @@ public class MemberInfoDTO extends GenericDTO{
         this.id = memberInfo.getId();
         this.payed = memberInfo.isPayed();
         this.datePayed = memberInfo.getDatePayed();
+        this.sportTeam = new SportTeamDTO(memberInfo.getSportTeam().getId(),memberInfo.getSportTeam().getPricePerYear(),memberInfo.getSportTeam().getTeamName(),memberInfo.getSportTeam().getMinAge(),memberInfo.getSportTeam().getMaxAge());
+        this.player = new PlayerDTO( memberInfo.getPlayer(), false);
     }
 
     public Long getId() {

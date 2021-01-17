@@ -5,7 +5,7 @@
  */
 package facades;
 
-import dto.UserCredentials;
+import dto.UserCredentialsDTO;
 import entities.User;
 import errorhandling.LoginInvalidException;
 import errorhandling.UsernameTakenException;
@@ -71,7 +71,7 @@ public class UserFacadeTest {
         String uname = "person1";
 
         //Act
-        UserCredentials uc = new UserCredentials(uname, "pass23");
+        UserCredentialsDTO uc = new UserCredentialsDTO(uname, "pass23");
         User user = facade.createUser(uc);
 
         assertEquals(uname, user.getUserName());
@@ -85,7 +85,7 @@ public class UserFacadeTest {
         String uname = "person2";
 
         //Act
-        UserCredentials uc = new UserCredentials(uname, "pass232");
+        UserCredentialsDTO uc = new UserCredentialsDTO(uname, "pass232");
         User user = facade.createUser(uc);
 
         assertEquals(uname, user.getUserName());
@@ -97,7 +97,7 @@ public class UserFacadeTest {
         UsernameTakenException assertThrows;
 
         //Act
-        UserCredentials uc = new UserCredentials("person3", "pass23s2");
+        UserCredentialsDTO uc = new UserCredentialsDTO("person3", "pass23s2");
         User userA = facade.createUser(uc);
 
         assertThrows = Assertions.assertThrows(UsernameTakenException.class, () -> {
@@ -112,7 +112,7 @@ public class UserFacadeTest {
         LoginInvalidException assertThrows;
 
         //Act
-        UserCredentials uc = new UserCredentials("", "pass23");
+        UserCredentialsDTO uc = new UserCredentialsDTO("", "pass23");
 
         assertThrows = Assertions.assertThrows(LoginInvalidException.class, () -> {
             User user = facade.createUser(uc);
@@ -126,7 +126,7 @@ public class UserFacadeTest {
         LoginInvalidException assertThrows;
 
         //Act
-        UserCredentials uc = new UserCredentials("person1", "");
+        UserCredentialsDTO uc = new UserCredentialsDTO("person1", "");
 
         assertThrows = Assertions.assertThrows(LoginInvalidException.class, () -> {
             User user = facade.createUser(uc);
@@ -140,7 +140,7 @@ public class UserFacadeTest {
         LoginInvalidException assertThrows;
 
         //Act
-        UserCredentials uc = new UserCredentials(null, "pass23");
+        UserCredentialsDTO uc = new UserCredentialsDTO(null, "pass23");
 
         assertThrows = Assertions.assertThrows(LoginInvalidException.class, () -> {
             User user = facade.createUser(uc);
@@ -154,7 +154,7 @@ public class UserFacadeTest {
         LoginInvalidException assertThrows;
 
         //Act
-        UserCredentials uc = new UserCredentials("person1", null);
+        UserCredentialsDTO uc = new UserCredentialsDTO("person1", null);
 
         assertThrows = Assertions.assertThrows(LoginInvalidException.class, () -> {
             User user = facade.createUser(uc);

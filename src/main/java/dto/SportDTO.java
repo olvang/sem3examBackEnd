@@ -29,6 +29,7 @@ public class SportDTO extends GenericDTO{
         this.id = sport.getId();
         this.name = sport.getName();
         this.description = sport.getDescription();
+        this.sportTeamList = getSportTeamList();
     }
 
     public Long getId() {
@@ -59,7 +60,4 @@ public class SportDTO extends GenericDTO{
         return sportTeamList;
     }
 
-    public void setSportTeamList(SportTeamListDTO sportTeamList) {
-        this.sportTeamList = sportTeamList;
-    }
 }

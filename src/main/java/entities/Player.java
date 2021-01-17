@@ -43,8 +43,9 @@ public class Player implements Serializable {
     @NotNull
     private int age;
 
-    @OneToMany
+    @OneToMany(mappedBy = "player")
     private List<MemberInfo> memberInfoList;
+
 
     public Player(String name, String email,String phone,int age) {
         this.name = name;
@@ -92,4 +93,5 @@ public class Player implements Serializable {
     public void setMemberInfoList(List<MemberInfo> memberInfoList) {
         this.memberInfoList = memberInfoList;
     }
+
 }

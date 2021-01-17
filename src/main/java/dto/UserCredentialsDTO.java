@@ -1,13 +1,19 @@
 package dto;
 
-public class UserCredentials {
+import entities.User;
+
+public class UserCredentialsDTO {
     private String username;
     private String password;
 
-    public UserCredentials() {
+    public UserCredentialsDTO() {
     }
 
-    public UserCredentials(String username, String password) {
+    public UserCredentialsDTO(User user) {
+       this.username = user.getUserName();
+    }
+
+    public UserCredentialsDTO(String username, String password) {
         if(username != null) {
             this.username = username;
         }else {

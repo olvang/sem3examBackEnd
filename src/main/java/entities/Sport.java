@@ -34,7 +34,7 @@ public class Sport implements Serializable {
     @NotNull
     private String description;
 
-    @ManyToMany()
+    @OneToMany(mappedBy = "sport")
     private List<SportTeam> sportTeamList;
 
     public Sport(String name, String description) {
@@ -60,9 +60,5 @@ public class Sport implements Serializable {
 
     public List<SportTeam> getSportTeamList() {
         return sportTeamList;
-    }
-
-    public void setSportTeamList(List<SportTeam> sportTeamList) {
-        this.sportTeamList = sportTeamList;
     }
 }

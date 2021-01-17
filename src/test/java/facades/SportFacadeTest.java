@@ -2,6 +2,7 @@ package facades;
 
 import dto.Lists.SportListDTO;
 import dto.SportDTO;
+import dto.SportTeamDTO;
 import entities.Sport;
 import entities.SportTeam;
 import errorhandling.AlreadyExistException;
@@ -122,6 +123,46 @@ public class SportFacadeTest {
 
         Assertions.assertThrows(NotFoundException.class, () -> {
             facade.deleteSport((long) 0);
+        });
+    }
+
+    @Test
+    public void updateSportTest() throws AlreadyExistException, MissingInputException, NotFoundException {
+        String updatedName = "New Test Name";
+
+        SportDTO sportDTO = new SportDTO(s1);
+        sportDTO.setName(updatedName);
+
+        Assertions.assertEquals(updatedName, facade.updateSport( sportDTO).getName());
+    }
+
+    @Test
+    public void updateSportWithNoName() {
+        SportDTO sportDTO = new SportDTO(s1);
+        sportDTO.setName("");
+
+        Assertions.assertThrows(MissingInputException.class, () -> {
+            facade.updateSport(sportDTO);
+        });
+    }
+
+    @Test
+    public void updateSportWrongId() {
+        SportDTO sportDTO = new SportDTO(s1);
+        sportDTO.setId((long) 0);
+
+        Assertions.assertThrows(MissingInputException.class, () -> {
+            facade.updateSport(sportDTO);
+        });
+    }
+
+    @Test
+    public void updateSportNameTaken() {
+        SportDTO sportDTO = new SportDTO(s1);
+        sportDTO.setName(s2.getName());
+
+        Assertions.assertThrows(AlreadyExistException.class, () -> {
+            facade.updateSport(sportDTO);
         });
     }
 }

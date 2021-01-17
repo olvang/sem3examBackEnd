@@ -1,6 +1,6 @@
 package facades;
 
-import dto.UserCredentials;
+import dto.UserCredentialsDTO;
 import entities.Role;
 import entities.User;
 import errorhandling.LoginInvalidException;
@@ -41,7 +41,7 @@ public class UserFacade {
         return user;
     }
 
-    public User createUser(UserCredentials uc) throws LoginInvalidException, UsernameTakenException {
+    public User createUser(UserCredentialsDTO uc) throws LoginInvalidException, UsernameTakenException {
         EntityManager em = emf.createEntityManager();
         if ("".equals(uc.getUsername()) || "".equals(uc.getPassword())) {
             throw new LoginInvalidException("No username or password entered.");

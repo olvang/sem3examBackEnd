@@ -40,9 +40,11 @@ public class MemberInfo implements Serializable {
     @ManyToOne
     private Player player;
 
-    public MemberInfo(boolean payed, Date datePayed) {
+    public MemberInfo(boolean payed, Date datePayed, SportTeam sportTeam, Player player) {
         this.payed = payed;
         this.datePayed = datePayed;
+        this.sportTeam = sportTeam;
+        this.player = player;
     }
 
     public boolean isPayed() {

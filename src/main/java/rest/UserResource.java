@@ -11,7 +11,7 @@ import com.nimbusds.jose.JWSSigner;
 import com.nimbusds.jose.crypto.MACSigner;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
-import dto.UserCredentials;
+import dto.UserCredentialsDTO;
 import entities.User;
 import errorhandling.GenericExceptionMapper;
 import errorhandling.LoginInvalidException;
@@ -46,7 +46,7 @@ public class UserResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response register(String jsonString) throws LoginInvalidException, UsernameTakenException, AuthenticationException {
-        UserCredentials uc = GSON.fromJson(jsonString, UserCredentials.class);
+        UserCredentialsDTO uc = GSON.fromJson(jsonString, UserCredentialsDTO.class);
         User user = USER_FACADE.createUser(uc);
         try {
             String token = createToken(user.getUserName(), user.getRolesAsStrings());

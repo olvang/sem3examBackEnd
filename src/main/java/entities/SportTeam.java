@@ -28,7 +28,7 @@ public class SportTeam implements Serializable {
 
     @Basic(optional = false)
     @NotNull
-    private double pricePerYear;
+    private int pricePerYear;
 
     @Basic(optional = false)
     @NotNull
@@ -42,27 +42,29 @@ public class SportTeam implements Serializable {
     @NotNull
     private int maxAge;
 
-    @ManyToMany()
+    @ManyToMany(mappedBy = "sportTeamList")
     private List<Coach> coachList;
 
+    @NotNull
     @ManyToOne()
     private Sport sport;
 
-    @OneToMany()
+    @OneToMany(mappedBy = "sportTeam")
     private List<MemberInfo> memberInfoList;
 
-    public SportTeam(double pricePerYear, String teamName, int minAge, int maxAge) {
+    public SportTeam(int pricePerYear, String teamName, int minAge, int maxAge, Sport sport) {
         this.pricePerYear = pricePerYear;
         this.teamName = teamName;
         this.minAge = minAge;
         this.maxAge = maxAge;
+        this.sport = sport;
     }
 
-    public double getPricePerYear() {
+    public int getPricePerYear() {
         return pricePerYear;
     }
 
-    public void setPricePerYear(double pricePerYear) {
+    public void setPricePerYear(int pricePerYear) {
         this.pricePerYear = pricePerYear;
     }
 
