@@ -47,7 +47,6 @@ public class SportTeamFacadeTest {
         try {
             em.getTransaction().begin();
             em.createNamedQuery("SportTeam.deleteAllRows").executeUpdate();
-            em.createNamedQuery("Sport.deleteAllRows").executeUpdate();
             em.persist(s1);
             em.persist(s2);
             em.persist(s3);
@@ -68,8 +67,6 @@ public class SportTeamFacadeTest {
         try {
             em.getTransaction().begin();
             em.createNamedQuery("SportTeam.deleteAllRows").executeUpdate();
-            em.createNamedQuery("Sport.deleteAllRows").executeUpdate();
-            
             em.getTransaction().commit();
         } finally {
             em.close();
