@@ -22,8 +22,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import utils.EMF_Creator;
 
-//Disabled
-public class LoginEndpointTest {
+public class UserResourceTest {
 
     private static final int SERVER_PORT = 7777;
     private static final String SERVER_URL = "http://localhost/api";
@@ -31,7 +30,7 @@ public class LoginEndpointTest {
     static final URI BASE_URI = UriBuilder.fromUri(SERVER_URL).port(SERVER_PORT).build();
     private static HttpServer httpServer;
     private static EntityManagerFactory emf;
-    
+
     static HttpServer startServer() {
         ResourceConfig rc = ResourceConfig.forApplication(new ApplicationConfig());
         return GrizzlyHttpServerFactory.createHttpServer(BASE_URI, rc);
@@ -54,7 +53,7 @@ public class LoginEndpointTest {
     public static void closeTestServer() {
         //Don't forget this, if you called its counterpart in @BeforeAll
         EMF_Creator.endREST_TestWithDB();
-        
+
         httpServer.shutdownNow();
     }
 
@@ -100,7 +99,7 @@ public class LoginEndpointTest {
                 .contentType("application/json")
                 .body(json)
                 //.when().post("/api/login")
-                .when().post("/login")
+                .when().post("/user/login")
                 .then()
                 .extract().path("token");
         //System.out.println("TOKEN ---> " + securityToken);
@@ -219,6 +218,31 @@ public class LoginEndpointTest {
                 .statusCode(403)
                 .body("code", equalTo(403))
                 .body("message", equalTo("Not authenticated - do login"));
+    }
+
+    @Test
+    public void testCreateUserSuccess() {
+        String username = "fd";
+        String password = "fd123";
+        String json = String.format("{username: \"%s\", password: \"%s\"}", username, password);
+        given()
+                .contentType("application/json")
+                .body(json)
+                .when().post("/user/create").then()
+                .statusCode(200)
+                .body("username", equalTo(username));
+    }
+
+    @Test
+    public void testCreateUserFail() {
+        String username = "";
+        String password = "fkd123";
+        String json = String.format("{username: \"%s\", password: \"%s\"}", username, password);
+        given()
+                .contentType("application/json")
+                .body(json)
+                .when().post("/user/create").then()
+                .statusCode(403);
     }
 
 }

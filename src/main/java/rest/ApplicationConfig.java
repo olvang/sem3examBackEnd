@@ -1,5 +1,8 @@
 package rest;
 
+import errorhandling.LoginInvalidExceptionMapper;
+import errorhandling.UsernameTakenExceptionMapper;
+
 import java.util.Set;
 import javax.ws.rs.core.Application;
 
@@ -22,9 +25,15 @@ public class ApplicationConfig extends Application {
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(cors.CorsFilter.class);
         resources.add(errorhandling.GenericExceptionMapper.class);
+        resources.add(errorhandling.MissingInputExceptionMapper.class);
+        resources.add(errorhandling.AlreadyExistExceptionMapper.class);
+        resources.add(errorhandling.NotFoundExceptionMapper.class);
+        resources.add(LoginInvalidExceptionMapper.class);
+        resources.add(UsernameTakenExceptionMapper.class);
         resources.add(org.glassfish.jersey.server.wadl.internal.WadlResource.class);
         resources.add(rest.DemoResource.class);
-        resources.add(rest.RenameMeResource.class);
+        resources.add(rest.UserResource.class);
+        resources.add(rest.SportResource.class);
         resources.add(security.JWTAuthenticationFilter.class);
         resources.add(security.LoginEndpoint.class);
         resources.add(security.RolesAllowedFilter.class);

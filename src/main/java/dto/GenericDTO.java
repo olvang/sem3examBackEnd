@@ -5,10 +5,6 @@
  */
 package dto;
 
-/**
- *
- * @author gamma
- */
 public class GenericDTO {
     
 }

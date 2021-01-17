@@ -1,13 +1,16 @@
 package facades;
 
+import dto.UserCredentials;
+import entities.Role;
 import entities.User;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+import errorhandling.LoginInvalidException;
+import errorhandling.UsernameTakenException;
 import security.errorhandling.AuthenticationException;
 
-/**
- * @author lam@cphbusiness.dk
- */
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+
+
 public class UserFacade {
 
     private static EntityManagerFactory emf;
@@ -16,11 +19,6 @@ public class UserFacade {
     private UserFacade() {
     }
 
-    /**
-     *
-     * @param _emf
-     * @return the instance of this facade.
-     */
     public static UserFacade getUserFacade(EntityManagerFactory _emf) {
         if (instance == null) {
             emf = _emf;
@@ -41,6 +39,33 @@ public class UserFacade {
             em.close();
         }
         return user;
+    }
+
+    public User createUser(UserCredentials uc) throws LoginInvalidException, UsernameTakenException {
+        EntityManager em = emf.createEntityManager();
+        if ("".equals(uc.getUsername()) || "".equals(uc.getPassword())) {
+            throw new LoginInvalidException("No username or password entered.");
+        }
+        User existingUser = em.find(User.class, uc.getUsername());
+        if (existingUser != null) {
+            throw new UsernameTakenException(uc.getUsername());
+        } else {
+
+            em.getTransaction().begin();
+            User user = new User(uc.getUsername(), uc.getPassword());
+
+            Role role = em.find(Role.class, "user");
+            if (role == null) {
+                role = new Role("user");
+                em.persist(role);
+            }
+            user.addRole(role);
+            em.persist(user);
+
+            em.getTransaction().commit();
+
+            return user;
+        }
     }
 
 }
