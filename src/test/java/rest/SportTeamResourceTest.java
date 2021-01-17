@@ -114,8 +114,8 @@ public class SportTeamResourceTest {
         try {
             em.getTransaction().begin();
             em.createQuery("DELETE FROM User").executeUpdate();
-            em.createQuery("DELETE FROM Sport").executeUpdate();
             em.createQuery("DELETE FROM SportTeam").executeUpdate();
+            em.createQuery("DELETE FROM Sport").executeUpdate();
             em.getTransaction().commit();
         } finally {
             em.close();
