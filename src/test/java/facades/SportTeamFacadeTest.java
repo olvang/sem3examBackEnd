@@ -46,8 +46,8 @@ public class SportTeamFacadeTest {
         st4 = new SportTeam(4,"SportTeam4", 40,50, s4);
         try {
             em.getTransaction().begin();
-            em.createNamedQuery("Sport.deleteAllRows").executeUpdate();
             em.createNamedQuery("SportTeam.deleteAllRows").executeUpdate();
+            em.createNamedQuery("Sport.deleteAllRows").executeUpdate();
             em.persist(s1);
             em.persist(s2);
             em.persist(s3);
@@ -67,8 +67,9 @@ public class SportTeamFacadeTest {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            em.createNamedQuery("Sport.deleteAllRows").executeUpdate();
             em.createNamedQuery("SportTeam.deleteAllRows").executeUpdate();
+            em.createNamedQuery("Sport.deleteAllRows").executeUpdate();
+            
             em.getTransaction().commit();
         } finally {
             em.close();
